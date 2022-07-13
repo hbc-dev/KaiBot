@@ -4,7 +4,7 @@ const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database("./data.sqlite");
 const db2 = new sqlite3.Database("./objects.sqlite");
 const { Client } = require('unb-api');
-const cliente = new Client('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfaWQiOiI4NzcyOTg2NzQzNTc2MzYxNDUiLCJpYXQiOjE2MjkyMzQ3MDN9.YwxhxT1TfWLhwrmk0YCn_NmoNGD7WoYkChf51DRYd2U');
+const cliente = new Client('Deja de buscar los tokens tarado');
 
 let SQLCreate = "CREATE TABLE IF NOT EXISTS usuarios (iduser TEXT, bio TEXT, games TEXT, color TEXT, image TEXT)";
 let SQLCreate2 = "CREATE TABLE IF NOT EXISTS objetos (iduser TEXT,cuponyokai INTEGER, money INTEGER, yokai INTEGER, cupondibujo INTEGER,moneda INTEGER)";
@@ -22,7 +22,7 @@ client.on('ready', () => {
 	client.user.setPresence({
 		status: "idle",
 		activity: {
-			name: `Yo-Kai Cards - Verano 2022`
+			name: `Yo-Kai Cards - Verano 2022`// Plot Twist: sale en noviembre (y si eso)
 		}
 	});
 	console.log('Bot activo')
@@ -78,7 +78,7 @@ client.on('messageCreate', async message => {
 			.addField('**Creador**', `167#0353`, true)
 			.addField('**Perfiles**', `\`V.1\``, true)
 			.addField('**Servidor**', `[Touch here](https://discord.gg/UZ3hz5U7pw)`, true)
-			.addField('**Donación**', `[Touch here](https://www.paypal.me/pagos3217)`, true)
+			.addField('**Donación**', `[Touch here](https://www.paypal.me/pagos3217)`, true)// Necesito comer
 			.setColor('BLUE')
 			.setFooter({text: 'Haga clic sobre Komasan para ver los comandos'})
 			.setImage('https://cdn.discordapp.com/attachments/864944123148107796/864947428259135548/icon.jpg')
@@ -723,7 +723,7 @@ if (command === 'socios') {
       });
     }
 });
-client.login('Nzc3NTAwOTQ5ODMyMDA3Njky.X7EWLw.V1ZA3xl3Jo1GFqvXhnv221IpGf4')
+client.login('No les voy a regalar el token xd')
 const express = require(`express`), app = express();
 app.get(`/`, async (req, res) => {
 	return res.end(`Estoy despierto.`);
