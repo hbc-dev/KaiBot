@@ -1,15 +1,15 @@
-/**
+/** 
  * @function execute The executable
  * @param {Object} channel The Discord Channel
- */
+*/
 
 module.exports = {
-  name: "ping",
-  alias: ["pong"],
-  admin: true,
+  name: "",
+  alias: [""],
+  admin: false,
   disable: false,
-  enableDM: false,
+  enableDM: true,
   execute: ({ channel }) => {
-    channel.send("Pong!");
+    // Code
   },
 };
