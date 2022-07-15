@@ -7,17 +7,20 @@ const getErrorInfo = require('./functions/system/getErrorInfo.js'),
 
 globalThis.chalk = require("chalk");// for logs with colors!
 
-
-const {Client, Collection} = require('discord.js'),
-    client = new Client({intents: 32767});
+const { Client, Collection } = require("discord.js"),
+  client = new Client({
+    intents: 32767,
+    partials: ['CHANNEL']
+});
 
 client.commands = new Collection();
+client.languages = new Collection();
 
 const commandHandler = require('./handlers/commands.js'),
-    eventHandler = require('./handlers/events.js');
+    eventHandler = require('./handlers/events.js'),
+    languageHandler = require('./handlers/languages.js');
 
-eventHandler(client)// => load and execute events!
-commandHandler(client)// => load commands!
+
 
 process.once("uncaughtException", (error) => {
     let formattedError = getErrorInfo(error)
@@ -26,6 +29,9 @@ process.once("uncaughtException", (error) => {
     writeLog(formattedError.log)
 });
 
+eventHandler(client)// => load and execute events!
+languageHandler(client)// => load all languages!
+commandHandler(client)// => load commands!
 client.login(process.env.TOKEN);
 
 
