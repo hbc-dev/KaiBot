@@ -3,6 +3,7 @@ class Command {
         this.client = client;
         this.message = message;
         this.language = language;
+        this.prefix = prefix;
         this.guild = message.guild;
         this.channel = message.channel;
         this.author = message.author;

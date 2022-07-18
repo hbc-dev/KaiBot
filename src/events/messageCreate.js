@@ -1,5 +1,6 @@
 const Command = require('../commands/Command.js'),
-      setLanguage = require('../')
+      manualConfig = require('../data/config.js'),
+      categories = manualConfig.categories;
 
 module.exports = {
   disable: false,
@@ -15,6 +16,11 @@ module.exports = {
           command = data.command;
 
     if (!command) return;
+    let enabledCategories = Object.keys(categories).filter(
+      category => categories[category].enable
+    )
+  
+    if (!enabledCategories.includes(command.category)) return;
 
     if (
       command.admin &&

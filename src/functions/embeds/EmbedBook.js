@@ -10,7 +10,7 @@ const YoError = require('../../../utils/botError.js')
 class EmbedBook {
     #names
 
-  constructor({ maxPages = null, minPages = 2 }) {
+  constructor({ maxPages = Infinity, minPages = 2 } = {}) {
     this.maxPages = maxPages;
     this.minPages = minPages;
     this.actualPage = 0;
@@ -19,18 +19,21 @@ class EmbedBook {
   }
 
   addPages(embedData) {
+    if (!embedData) throw new YoError('Añade un embed')
+    if (typeof embedData !== "object")
+      throw new YoError("El embed a añadir no es un objeto u array");
+
+    let length = Array.isArray(embedData) ? embedData.length : 1;
+
     if (
       this.pages.length == this.maxPages ||
-      embedData.length > this.maxPages ||
-      embedData + this.pages.length > this.maxPages
+      length > this.maxPages ||
+      length + this.pages.length > this.maxPages
     )
       return {
         sucess: false,
         errorCode: "MAX_PAGES_REACHED",
       };
-
-    if (typeof embedData !== "object")
-      throw new YoError("El embed a añadir no es un objeto u array");
 
     if (Array.isArray(embedData)) {
       for (let embed of embedData) {
@@ -129,7 +132,9 @@ class EmbedBook {
   }
 }
 
-let {MessageEmbed} = require('discord.js')
+module.exports = EmbedBook;
+
+/* let {MessageEmbed} = require('discord.js')
 
 const embed1 = new MessageEmbed()
 const embed2 = new MessageEmbed()
@@ -143,5 +148,4 @@ let addedPages = book.addPages([
     embed2
 ]);
 
-book.removePages(2)
-console.log(book)
+console.log(book) */
