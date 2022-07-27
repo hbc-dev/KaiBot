@@ -6,7 +6,7 @@
 
 const { MessageActionRow, MessageButton } = require("discord.js");
 
-function listenHelpComponents({collector, books, message, selectMenu}) {
+function listenHelpComponents({collector, books, message, components}) {
     collector.on('collect', (click) => {
         let value = click?.values[0]
 
@@ -18,14 +18,43 @@ function listenHelpComponents({collector, books, message, selectMenu}) {
 
             return click.deferUpdate();
         } else {
+            let buttons = components[1].components;
+            buttons.forEach((button) => button.setDisabled(false));
+
             message.edit({
-                files: [],
-                embeds: books[value].nextPage()
-            })
+              files: [],
+              embeds: books[value].nextPage(),
+              components: [
+                components[1],
+                components[0],
+                new MessageActionRow().addComponents([
+                  new MessageButton()
+                    .setLabel("ola")
+                    .setCustomId("x")
+                    .setStyle("PRIMARY"),
+                  new MessageButton()
+                    .setLabel("test")
+                    .setCustomId("xd")
+                    .setStyle("SECONDARY"),
+                  new MessageButton()
+                    .setLabel("test")
+                    .setCustomId("aaa")
+                    .setStyle("DANGER"),
+                  new MessageButton()
+                    .setLabel("test")
+                    .setCustomId("awdaw")
+                    .setStyle("SUCCESS"),
+                  new MessageButton()
+                    .setLabel("test")
+                    .setCustomId("LINK")
+                    .setStyle("LINK")
+                    .setURL('https://example.com/'),
+                ]),
+              ],
+            });
         }
 
         if (click.isButton()) {
-            
         }
     });
 }

@@ -23,7 +23,8 @@ module.exports = {
   disable: false,
   enableDM: false,
   execute: ({ channel, author, client, language, prefix }) => {
-    const componentCollection = new MessageActionRow();
+    const componentCollectionMenu = new MessageActionRow();
+    const componentCollectionButtons = new MessageActionRow();
     const selectMenu = new MessageSelectMenu()
     const next = new MessageButton();
     const previous = new MessageButton();
@@ -44,14 +45,15 @@ module.exports = {
 
     selectMenu.addOptions(textComponents.selectMenu);
     selectMenu.setCustomId('HELP_SELECT_MENU');
-    componentCollection.addComponents(selectMenu);
+    componentCollectionMenu.addComponents(selectMenu);
+    componentCollectionButtons.addComponents([previous, next]);
     allBooks.home = {
       file: textImages.home,
       embed: textEmbeds.home
     }
 
     channel.send({
-      components: [componentCollection],
+      components: [componentCollectionMenu, componentCollectionButtons],
       embeds: textEmbeds.home,
       files: textImages.home
     }).then(async message => {
@@ -64,7 +66,12 @@ module.exports = {
         time: 6 * 10 ** 4
       });
 
-      listenHelpComponents({collector: clickedComponent, books: allBooks, message, selectMenu: componentCollection});
+      listenHelpComponents({
+        collector: clickedComponent,
+        books: allBooks,
+        components: [componentCollectionMenu, componentCollectionButtons],
+        message,
+      });
     });
   },
 };
