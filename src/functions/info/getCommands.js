@@ -1,6 +1,6 @@
 const manualConfig = require('../../data/config.js'),
     EmbedBook = require('../embeds/EmbedBook.js'),
-    {MessageEmbed} = require('discord.js');
+    {EmbedBuilder} = require('discord.js');
 
 /**
  * @function getCommandsInfo For get all the commands info and send with components
@@ -25,18 +25,18 @@ function getCommandsInfo({commands, language, prefix}) {
 }
 
 function makeEmbedInfo(commands, category, lang, prefix) {
-    let embed = new MessageEmbed(),
+    let embed = new EmbedBuilder(),
         allEmbeds = [],
         categories = manualConfig.categories;
 
     for (let command of commands.values()) {
         let value;
 
-        if (embed.fields.length == 25) allEmbeds.push(embed), embed = new MessageEmbed();
-        if (!embed.title) embed.setTitle(
+        if (embed.data?.fields?.length == 25) allEmbeds.push(embed), embed = new EmbedBuilder();
+        if (!embed.data?.title) embed.setTitle(
             lang.__categories[category]+' | '+(categories[category].enable ? '`✅`' : '`❌`')
         )
-        if (!embed.color) embed.color = categories[category].color;
+        if (!embed.data?.color) embed.color = categories[category].color;
 
         let commandExtras = lang[command.name]
         if (!commandExtras) value = "No hay una descripción del comando";

@@ -4,7 +4,7 @@
 * @param {object} books The provided books for send them
 */
 
-const { MessageActionRow, MessageButton } = require("discord.js");
+const { ActionRowBuilder, ButtonBuilder } = require("discord.js");
 
 function listenHelpComponents({collector, books, message, components}) {
     collector.on('collect', (click) => {
@@ -27,24 +27,24 @@ function listenHelpComponents({collector, books, message, components}) {
               components: [
                 components[1],
                 components[0],
-                new MessageActionRow().addComponents([
-                  new MessageButton()
+                new ActionRowBuilder().addComponents([
+                  new ButtonBuilder()
                     .setLabel("ola")
                     .setCustomId("x")
                     .setStyle("PRIMARY"),
-                  new MessageButton()
+                  new ButtonBuilder()
                     .setLabel("test")
                     .setCustomId("xd")
                     .setStyle("SECONDARY"),
-                  new MessageButton()
+                  new ButtonBuilder()
                     .setLabel("test")
                     .setCustomId("aaa")
                     .setStyle("DANGER"),
-                  new MessageButton()
+                  new ButtonBuilder()
                     .setLabel("test")
                     .setCustomId("awdaw")
                     .setStyle("SUCCESS"),
-                  new MessageButton()
+                  new ButtonBuilder()
                     .setLabel("test")
                     .setCustomId("LINK")
                     .setStyle("LINK")

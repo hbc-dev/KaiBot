@@ -133,11 +133,18 @@ class EmbedBook {
 }
 
 module.exports = EmbedBook;
+/* 
+let {EmbedBuilder} = require('discord.js')
 
-/* let {MessageEmbed} = require('discord.js')
-
-const embed1 = new MessageEmbed()
-const embed2 = new MessageEmbed()
+const embed1 = new EmbedBuilder({
+  fields: [
+    {
+      name: 'hola',
+      value: 'adios'
+    }
+  ]
+})
+const embed2 = new EmbedBuilder()
 
 const book = new EmbedBook({maxPages: 2})
 book.setCustomName(embed1, 'embed1')
@@ -148,4 +155,4 @@ let addedPages = book.addPages([
     embed2
 ]);
 
-console.log(book) */
+console.log(book.pages[0].data) */

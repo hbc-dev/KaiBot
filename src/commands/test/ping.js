@@ -10,6 +10,7 @@ module.exports = {
   admin: true,
   disable: false,
   enableDM: false,
+  
   execute: ({ channel }) => {
     channel.send("Pong!");
   },

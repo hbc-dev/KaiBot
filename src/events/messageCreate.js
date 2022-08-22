@@ -7,6 +7,7 @@ module.exports = {
   name: "messageCreate",
   execute: (client, message) => {
     const prefix = process.env.PREFIX;// falta la db
+    
     if (message.author.bot) return;
     if (!message.content.toLowerCase().startsWith(prefix)) return;
 

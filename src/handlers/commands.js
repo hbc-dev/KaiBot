@@ -27,6 +27,8 @@ module.exports = (client) => {
         content.name,// command name
         content// all command properties
       )
+
+      //if (content.slash) client.application.commands.create(content)
     }
   }
 };
