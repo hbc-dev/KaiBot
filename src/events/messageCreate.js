@@ -1,29 +1,19 @@
-const Command = require('../commands/Command.js'),
-      setLanguage = require('../')
+const BaseEvent = require("../structures/BaseEvent");
+const CommandData = require("../structures/CommandData");
+const storeCode = require("../utils/storeCode");
 
-module.exports = {
-  disable: false,
-  name: "messageCreate",
-  execute: (client, message) => {
-    const prefix = process.env.PREFIX;// falta la db
-    if (message.author.bot) return;
-    if (!message.content.toLowerCase().startsWith(prefix)) return;
-
-    const language = client.languages.get('es');// falta la db
-
-    const data = new Command(client, message, language, prefix),
-          command = data.command;
-
-    if (!command) return;
-
-    if (
-      command.admin &&
-      !JSON.parse(process.env.ADMIN_IDS).includes(data.author.id)
-      ) return;
-
-    if (command.disable) return;
-    if (data.channel.type == 'DM' && !command.enableDM) return;
-
-    command.execute(data)
+const event = new BaseEvent({
+  alwaysListen: true,
+  disabled: false,
+  execute: async (client, message) => {
+    try {
+      const data = new CommandData(client, message);
+      data.run(data);
+    } catch(error) {
+      if (error.name !== 'YoError') throw error;
+      else return storeCode(error.message, message)// Ignoramos por el momento los códigos de error
+    }
   },
-};
+});
+
+module.exports = event;

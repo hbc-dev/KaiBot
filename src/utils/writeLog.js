@@ -8,7 +8,7 @@ const {existsSync, writeFileSync, appendFileSync, mkdirSync} = require('fs'),
  */
 
 function writeLog(log) {
-    let logsFolder = resolve(__dirname, '..', '..', '..', 'logs');
+    let logsFolder = resolve(__dirname, '..', '..', 'logs');
 
     if (!existsSync(logsFolder)) mkdirSync(logsFolder)
 
@@ -18,8 +18,6 @@ function writeLog(log) {
 
     if (!existsSync(file)) writeFileSync(file, log + "\n\n\n");
     else appendFileSync(file, log + "\n\n\n");
-
-    return {sucess: true};
 }
 
 module.exports = writeLog;

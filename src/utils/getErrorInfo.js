@@ -7,8 +7,8 @@
 function getErrorInfo(error) {
   let stack = error.stack;
 
-  let lines = stack.match(/(?<=\.js:).*?(?=\))/gm),
-    pathOfFiles = stack.match(/(?<=\().*?(?<=\.js)/gm),
+  let lines = stack.match(/(?<=\.js:).*?(?=\)|$)/gm) ?? [],
+    pathOfFiles = stack.match(/(?<=\(|at ).*?(?<=\.js|\.png)/gm),
     time = new Date().toLocaleTimeString("es-ES");
 
   let errorLines = '\n\n' + lines
@@ -21,6 +21,7 @@ function getErrorInfo(error) {
   return {
     log: premessage + message + errorLines,
     console: premessage + chalk.bgRed(message) + chalk.italic(errorLines),
+    stack
   };
 }
 
