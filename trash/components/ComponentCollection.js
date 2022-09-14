@@ -1,12 +1,5 @@
 const YoError = require("../../../utils/botError");
-const { SelectMenuBuilder, ActionRowBuilder, ButtonBuilder, Collection } = require("discord.js"),
-        makeMenuTypes = ({
-            id = 'DEFAULT_SELECT_MENU',
-            disabled = false,
-            data = [],
-            minValues,
-            maxValues,
-        } = {})
+const { SelectMenuBuilder, ActionRowBuilder, ButtonBuilder, Collection } = require("discord.js")
 
 class ComponentCollection {
 
@@ -14,7 +7,7 @@ class ComponentCollection {
         this.components = [];
     }
 
-    makeMenu({id, disabled, data, minValues, maxValues} = makeMenuTypes, {name, group} = {}) {
+    makeMenu({id, disabled, options, minValues, maxValues} = makeMenuTypes, {name, group} = {}) {
         const menu = new SelectMenuBuilder();
         const container = new ActionRowBuilder();
 
@@ -44,7 +37,7 @@ class ComponentCollection {
         if (minValues) menu.minValues(minValues)
         if (maxValues) menu.maxValues(maxValues)
 
-        menu.addOptions(data)
+        menu.addOptions(options)
         container.addComponents(menu);
         this.components.push(container)
     }
@@ -132,5 +125,25 @@ class ComponentCollection {
         return types[type]
     }
 }
+
+const collection = new ComponentCollection();
+collection.makeMenu({
+    id: 'MY_MENU',
+    options: [{
+        default: true,
+        label: 'Test menu',
+        value: 'FIRST_OPTION'
+    }]
+})
+
+collection.makeButtons([
+    {
+        style: 1,
+        label: 'Hello world',
+        id: 'MY_BUTTON'
+    }
+])
+
+console.log(collection.components)
 
 module.exports = ComponentCollection;

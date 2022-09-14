@@ -1,8 +1,7 @@
 class YoError extends Error {
     constructor(...data) {
-        super(...data)
-
-        this.name = '[Yo-Error]'
+        super(...data);
+        this.name = `YoError`;
     }
 }
 

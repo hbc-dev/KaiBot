@@ -1,34 +1,51 @@
-const { readdirSync } = require("fs"),
-  { resolve } = require("path");
+const {sep, join} = require('path');
+const {readdirSync} = require('fs');
 
 /**
- * @function commandHandler For load all commands in "src/commands" dir
- * @param {object} client The provided discord client
+ * Datos extra de retorno
+ * @typedef {object} returns
+ * @property {number} loaded El número de comandos cargados con éxito
+ * @property {string[]} unloaded Un array con los comandos no cargados
  */
+
+/**
+ * Cargador de comandos automático
+ * @param {object} client El cliente de Discord
+ * @returns {returns} Datos extra de retorno
+ */
+
 module.exports = (client) => {
-  let path = resolve(__dirname, '..', 'commands'),
-      folders = readdirSync(path).filter(
-        folder => folder !== 'Command.js'
-      ),
-      commands = client.commands
+    let commands = client.commands;
+    let path = join(__dirname, '../commands');
+    let unloaded = [];
+    let loaded = 0;
 
-  for (let folder of folders) {
-    let files = readdirSync(
-      resolve(path, folder)
-    ).filter(file => file.endsWith('.js'));
+    for (let folder of readdirSync(path)) {
+        let files = join(path, sep, folder);
+        let command = join(files, sep, `${folder}.js`);
 
-    for (let file of files) {
-      let content = require(
-        resolve(path, folder, file)
-      )
+        try {
+            let point = readdirSync(files).filter((file) => file == `${folder}.js`);
 
-      content.category = folder;
-      commands.set(
-        content.name,// command name
-        content// all command properties
-      )
+            if (!point) {unloaded.push(files);continue;}
 
-      //if (content.slash) client.application.commands.create(content)
+            commands.set(folder, require(command));
+            loaded++;
+        } catch {unloaded.push(files);}
     }
-  }
-};
+
+    console.log(
+        chalk.greenBright(`Se han cargado un total de ${chalk.bold(loaded)} comandos en memoria`)
+    )
+
+    console.log(chalk.redBright(`Un total de ${chalk.bold(unloaded.length)} comandos no han sido cargados\n\n`))
+
+    if (unloaded.length > 0) console.log(
+        `Lista de comandos no cargados:\n\n${unloaded.map(cmd => chalk.italic(cmd)+'\n').join('')}`
+    );
+
+    return {
+        loaded,
+        unloaded
+    }
+}
