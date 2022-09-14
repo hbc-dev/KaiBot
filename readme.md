@@ -19,9 +19,9 @@ Gracias a todo mi antiguo equipo de Tiendakai y amigos que me impulsaron a crear
 
 Gracias a **⏳𝗧𝗶𝗺𝗲𝗸𝗲𝗲𝗽𝗲𝗿 𝗖𝗼𝗼𝗸𝗶𝗲⏳#5887** por todos esos assets 🖋
 
-Gracias a todo el staff de [Yo-kai World (Discord)](https://discord.gg/4Rs73pXXdy) 🏋️‍♀️
+Gracias a todo el staff de [Yo-kai World (Discord)](https://discord.gg/yokaiworld) 🏋️‍♀️
 
-Gracias en general a toda la comunidad de [Yo-kai World (Discord)](https://discord.gg/4Rs73pXXdy) 💕
+Gracias en general a toda la comunidad de [Yo-kai World (Discord)](https://discord.gg/yokaiworld) 💕
 
 <br><br>
 <div style="text-align:center;">
