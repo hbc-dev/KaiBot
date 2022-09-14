@@ -52,7 +52,7 @@ class CommandData {
 
         if (
             checkCommand.admin &&
-            !message.member.roles.cache.find(r => JSON.parse(process.env.ADMIN_IDS).includes(r.id))
+            !JSON.parse(process.env.ADMIN_IDS).includes(message.author.id)
         ) throw new YoError("SUPER_ADMIN");
 
         if (checkCommand.disabled) throw new YoError('IS_DISABLED')
