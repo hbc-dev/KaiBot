@@ -42,7 +42,7 @@ const locales = {
 
 /**
  * La base de un comando
- * @module BaseCommand
+ * @module
  */
 class BaseCommand {
     #func
@@ -51,6 +51,7 @@ class BaseCommand {
     #commandAliases
     #commandDisabled
     #superAdmin
+    #commandCategory
 
     /**
      * @param {Object} options Las opciones del comando
@@ -61,7 +62,7 @@ class BaseCommand {
      * @param {boolean} [options.disabled] Habilita o deshabilita el comando
      * @param {boolean} [options.admin] Activa o desactiva el modo super admin
      */
-    constructor({run = () => {}, names = {}, descriptions = {}, aliases = [], disabled = false, admin = false} = {}) {
+    constructor({run = () => {}, names = {}, descriptions = {}, aliases = [], disabled = false, admin = false, category = ''} = {}) {
         if (typeof run !== 'function')
             throw new YoError(`La propiedad run debe de ser una function`);
         if (typeof names !== 'object' || Array.isArray(names))
@@ -74,6 +75,8 @@ class BaseCommand {
             throw new YoError(`La propiedad disabled debe de ser un boolean`);
         if (typeof admin !== 'boolean') 
             throw new YoError(`La propiedad admin debe de ser un boolean`);
+        if (typeof category !== 'string')
+            throw new YoError(`La propiedad category debe ser un string`)
 
         if (Object.keys(names).length < 1) this.#commandDisabled = true;
         else this.#commandDisabled = disabled;
@@ -83,6 +86,7 @@ class BaseCommand {
         this.#locateDescriptions = Object.assign({}, locales, descriptions);
         this.#commandAliases = aliases;
         this.#superAdmin = admin;
+        this.#commandCategory = category;
     }
 
     /**
@@ -120,6 +124,12 @@ class BaseCommand {
      * @type {boolean}
      */
     get admin() {return this.#superAdmin;}
+
+    /**
+     * La categoría del comando
+     * @type {string}
+     */
+    get category() {return this.#commandCategory;}
 }
 
 module.exports = BaseCommand;
