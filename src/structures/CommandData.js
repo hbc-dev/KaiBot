@@ -121,6 +121,12 @@ class CommandData {
      * @type {Guild}
      */
     get guild() {return this.#guildData;}
+
+    /**
+     * El lenguaje del usuario
+     * @type {Object<string, any>}
+     */
+    get language() {return require(`../data/lang/es-ES.json`)}
 }
 
 module.exports = CommandData;
