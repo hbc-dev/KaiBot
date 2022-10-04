@@ -1,6 +1,9 @@
-const {SlashCommandBuilder} = require('discord.js')
+const SlashCommandBase = require('../../structures/SlashCommandBase')
 
-const slash = new SlashCommandBuilder().setName('test').setDescription('ESTO ES UN TEST')
-slash.onlyGuilds;
+const slash = new SlashCommandBase({
+    onlyGuilds: true
+})
+.setName('test')
+.setDescription('Esto es un comando de ámbito privado')
 
 module.exports = slash

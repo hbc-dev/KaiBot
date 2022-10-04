@@ -7,6 +7,7 @@ module.exports = async () => {
     const rest = new REST().setToken(process.env.TOKEN);
     const commmands = {global: [], privates: []};
     const unloaded = [];
+    let loaded = 0;
     
     let path = resolve(__dirname, '../slashcommands')
 
@@ -33,18 +34,24 @@ module.exports = async () => {
                     await rest.put(
                         Routes.applicationGuildCommands(process.env.CLIENT_ID, guild),
                         {body: commmands.privates}
-                    )
+                    );
                 }
+
+                loaded += commmands.privates.length;
             }
 
-            if (commmands.global.length > 0) await rest.put(
-                Routes.applicationCommands(process.env.CLIENT_ID),
-                {body: commmands.global}
-            )
+            if (commmands.global.length > 0) {
+                await rest.put(
+                    Routes.applicationCommands(process.env.CLIENT_ID),
+                    {body: commmands.global}
+                )
+
+                loaded += commmands.global.length;
+            };
         } catch(e) {unloaded.push(`Error: ${e.message}`)}
     })().then(() => {
         console.log(
-            chalk.greenBright(`Se han cargado un total de ${chalk.bold(commmands.global.length+commmands.privates.length)} slashcommands`)
+            chalk.greenBright(`Se han cargado un total de ${chalk.bold(loaded)} slashcommands`)
         )
 
         console.log(chalk.redBright(`Un total de ${chalk.bold(unloaded.length)} slashcommands no han sido cargados\n\n`))
