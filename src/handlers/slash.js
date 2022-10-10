@@ -2,11 +2,12 @@ const {REST, Routes} = require('discord.js')
 const {readdirSync} = require('fs')
 const {resolve} = require('path')
 
-module.exports = async () => {
+module.exports = async (client) => {
     const guilds = JSON.parse(process.env.ALLOWED_GUILDS);
     const rest = new REST().setToken(process.env.TOKEN);
     const commmands = {global: [], privates: []};
     const unloaded = [];
+    const slashData = client.slash;
     let loaded = 0;
     
     let path = resolve(__dirname, '../slashcommands')
@@ -19,12 +20,11 @@ module.exports = async () => {
             let point = readdirSync(files).filter(file => file == `${file}.js`);
 
             if (!point) {unloaded.push(folder);continue;}
-
             let data = require(slash)
 
             if (!data.onlyGuilds) commmands.global.push(data.toJSON())
-            else commmands.privates.push(data.toJSON())
-        } catch(e) {unloaded.push(files);}
+            else {commmands.privates.push(data.toJSON());slashData.set(folder, data)}
+        } catch(e) {console.log(e);unloaded.push(files);}
     }
 
     (async () => {

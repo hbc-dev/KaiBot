@@ -19,6 +19,7 @@ const setValue = (val) => {let opt = Object.assign({}, options);opt.value = val;
  * @property {boolean} admin Si el comando es solo para devs
  * @property {string} category La categoría del comando
  * @property {runner} run La función del comando
+ * @property {string[]} internalAliases Los aliases internos del comando
  */
 
 /**
@@ -46,10 +47,15 @@ class SlashCommandBase extends SlashCommandBuilder {
      * @type {boolean}
      */
     admin
+        /**
+     * Aliases internos
+     * @type {string[]}
+     */
+    internalAliases
     /**
      * La función del comando
      * @callback runner
-     * @param {CommandInteraction} interaction
+     * @param {SlashCommandData} interaction
      * @returns 
      * @type {runner}
      */
@@ -59,7 +65,7 @@ class SlashCommandBase extends SlashCommandBuilder {
      * Crea un slash command
      * @param {extras} slashInfo La información del comando
      */
-    constructor({onlyGuilds = true, disabled = false, admin = true, category = "misc", run = () => {}} = {}) {
+    constructor({onlyGuilds = true, disabled = false, admin = true, category = "misc", run = () => {}, internalAliases} = {}) {
         super();
 
         if (typeof onlyGuilds !== 'boolean') throw new YoError(`Se esperaba como "onlyGuilds" un boolean`);
@@ -67,13 +73,15 @@ class SlashCommandBase extends SlashCommandBuilder {
         if (typeof admin !== "boolean") throw new YoError(`Se esperaba como "admin" un boolean`);
         if (typeof category !== "string" || category.length < 0) throw new YoError(`Se esperaba como "category" un string`);
         if (typeof run !== 'function') throw new YoError(`Se esperaba como "run" una function`);
+        if (!Array.isArray(internalAliases)) throw new YoError(`Se esperaba como "internalAliases un array`)
 
         Object.defineProperties(this, {
             onlyGuilds: setValue(onlyGuilds),
             disabled: setValue(disabled),
             admin: setValue(admin),
             category: setValue(category),
-            run: setValue(run)
+            run: setValue(run),
+            internalAliases: setValue(internalAliases),
         });
     }
 }

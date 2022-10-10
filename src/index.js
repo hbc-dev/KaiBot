@@ -38,8 +38,9 @@ process.on("uncaughtException", (error) => {
 
 // #MAIN - Todo el código de ejecución
 client.commands = new Collection();
+client.slash = new Collection();
 
-slash();
+slash(client);
 commands(client);
 events(client);
 

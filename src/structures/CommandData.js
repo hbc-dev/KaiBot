@@ -1,7 +1,15 @@
 'use strict';
-const { User, Guild, TextChannel, Client, Message, GuildMember } = require("discord.js")
 const YoError = require('../utils/error');
 const BaseCommand = require('./BaseCommand')
+const {
+  User,
+  Guild,
+  TextChannel,
+  Client,
+  Message,
+  GuildMember,
+  Collection
+} = require("discord.js");
 
 /**
  * @callback runner
@@ -10,7 +18,7 @@ const BaseCommand = require('./BaseCommand')
 
 /**
  * @typedef {Object} CustomClient
- * @property {Map<string, BaseCommand>} commands
+ * @property {Collection<string, BaseCommand>} commands
  */
 
 /**

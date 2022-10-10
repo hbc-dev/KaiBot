@@ -8,7 +8,7 @@ const event = new BaseEvent({
   execute: async (client, interaction) => {
     try {
       const data = new SlashCommandData(client, interaction);
-      //data.run(data);
+      data.run(data);
     } catch (error) {
       if (error.name !== "YoError") throw error;
       else return storeCode(error.message, interaction); // Ignoramos por el momento los códigos de error
