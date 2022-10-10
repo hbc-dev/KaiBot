@@ -81,7 +81,7 @@ module.exports = (client) => {
     );
 
     console.log(
-        chalk.redBright(`Un total de ${isolated.length} eventos no se estan escuchando`)
+        chalk.redBright(`Un total de ${isolated.length} eventos no se estan escuchando\n`)
     );
 
     if (isolated.length > 0) console.log(

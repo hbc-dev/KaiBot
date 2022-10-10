@@ -1,10 +1,24 @@
 'use strict';
-const { User, Guild, TextChannel, Client, Message, GuildMember } = require("discord.js")
 const YoError = require('../utils/error');
+const BaseCommand = require('./BaseCommand')
+const {
+  User,
+  Guild,
+  TextChannel,
+  Client,
+  Message,
+  GuildMember,
+  Collection
+} = require("discord.js");
 
 /**
  * @callback runner
  * @param {CommandData} data
+ */
+
+/**
+ * @typedef {Object} CustomClient
+ * @property {Collection<string, BaseCommand>} commands
  */
 
 /**
@@ -14,6 +28,7 @@ const YoError = require('../utils/error');
 class CommandData {
     #commandName
     #commandArguments
+    #entireMessage
     #authorData
     #memberData
     #channelData
@@ -22,7 +37,7 @@ class CommandData {
     #execute
 
     /**
-     * @param {Client} client El cliente que ha escuchado al usuario
+     * @param {CustomClient & Client} client El cliente que ha escuchado al usuario
      * @param {Message} message El mensaje enviado
      */
     constructor(client, message) {
@@ -33,6 +48,7 @@ class CommandData {
         let parser = message.content.trim().slice(prefix.length).split(' ')
 
         // #GENERAL
+        this.#entireMessage = message;
         this.#commandName = parser.shift().toLowerCase();
         this.#commandArguments = parser;
         this.#clientData = client;
@@ -78,8 +94,15 @@ class CommandData {
     get args() {return this.#commandArguments;}
 
     /**
+     * El mensaje
+     * @type {Message}
+     */
+    get message() {return this.#entireMessage}
+
+    /**
      * El cliente que escuchó el comando
-     * @type {Client}
+     * @interface CustomClient
+     * @property {Map<string, BaseCommand>} commands
      */
     get client() {return this.#clientData;}
 
@@ -106,6 +129,12 @@ class CommandData {
      * @type {Guild}
      */
     get guild() {return this.#guildData;}
+
+    /**
+     * El lenguaje del usuario
+     * @type {Object<string, any>}
+     */
+    get language() {return require(`../data/lang/es-ES.json`)}
 }
 
 module.exports = CommandData;

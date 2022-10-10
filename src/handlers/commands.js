@@ -1,5 +1,6 @@
 const {sep, join} = require('path');
 const {readdirSync} = require('fs');
+const { Client } = require('discord.js');
 
 /**
  * Datos extra de retorno
@@ -10,10 +11,9 @@ const {readdirSync} = require('fs');
 
 /**
  * Cargador de comandos automático
- * @param {object} client El cliente de Discord
+ * @param {Client} client El cliente de Discord
  * @returns {returns} Datos extra de retorno
  */
-
 module.exports = (client) => {
     let commands = client.commands;
     let path = join(__dirname, '../commands');

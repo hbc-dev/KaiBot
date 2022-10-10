@@ -7,8 +7,10 @@ const getErrorInfo = require('./utils/getErrorInfo');
 const writeLog = require('./utils/writeLog');
 
 // #HANDLERS - Todos los cargadores automáticos
+const slahs = require('./handlers/slash')
 const commands = require("./handlers/commands");
 const events = require("./handlers/events");
+const slash = require("./handlers/slash");
 
 const client = new Client({
   intents: [
@@ -36,7 +38,10 @@ process.on("uncaughtException", (error) => {
 
 // #MAIN - Todo el código de ejecución
 client.commands = new Collection();
+client.slash = new Collection();
 
+slash(client);
 commands(client);
 events(client);
+
 client.login(process.env.TOKEN);

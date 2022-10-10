@@ -1,16 +1,20 @@
-const { Message } = require("discord.js");
+const { Message, CommandInteraction } = require("discord.js");
 const CommandData = require("../structures/CommandData");
 
 /**
  * Almacena los diferentes códigos en archivos .log
  * @param {string} code El código de error
- * @param {Message} message Los datos del comando
+ * @param {Message & CommandInteraction} message Los datos del comando
  */
-function storeCode(code, {client, author}) {
-    client.shard.broadcastEval((c, {code, author}) => {
+function storeCode(code, {client, author, member}) {
+    client.shard.broadcastEval(async (c, {code, author, member}) => {
+        let userData = author ?? await c.users.fetch(member.userId);
+
+        let tag = userData?.tag ?? userData.username+'#'+userData.discriminator;
+
         let codes = {
-            SUPER_ADMIN: `> [👑] El usuario **${author.tag}** intentó hacer uso de un comando super admin.`,
-            IS_DISABLED: `> [🚫] El usuario **${author.tag}** ha intentado usar un comando deshabilitado.`,
+            SUPER_ADMIN: `> [👑] El usuario **${tag}** intentó hacer uso de un comando super admin.`,
+            IS_DISABLED: `> [🚫] El usuario **${tag}** ha intentado usar un comando deshabilitado.`,
         };
 
         code = codes[code];
@@ -19,7 +23,7 @@ function storeCode(code, {client, author}) {
         c.channels.cache.find(channel => channel.id == process.env.LOGS_CHANNEL).send({
             content: code
         });
-    }, {context: {code, author}});
+    }, {context: {code, author, member}});
 }
 
 module.exports = storeCode;
