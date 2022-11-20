@@ -25,6 +25,7 @@
     "chalk": "4.1.2",
     "discord.js": "^14.1.2",
     "dotenv": "16.0.1",
-    "sqliteplus": "^3.0.4"
+    "sqliteplus": "^3.0.4",
+    "unb-api": "^1.2.3"
   }
 }

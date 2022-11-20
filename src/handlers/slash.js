@@ -48,7 +48,7 @@ module.exports = async (client) => {
 
                 loaded += commmands.global.length;
             };
-        } catch(e) {unloaded.push(`Error: ${e.message}`)}
+        } catch(e) {unloaded.push(`Error: ${e.message}`);console.log(e)}
     })().then(() => {
         console.log(
             chalk.greenBright(`Se han cargado un total de ${chalk.bold(loaded)} slashcommands`)

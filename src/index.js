@@ -1,5 +1,6 @@
 // #DEPENDENCIES - Todas las dependencias necesarias
 const { Client, IntentsBitField, Partials, Collection } = require("discord.js");
+const unb = require("unb-api");
 globalThis.chalk = require('chalk')
 
 // #SYSTEM - Todas las dependencias del sistema
@@ -39,6 +40,8 @@ process.on("uncaughtException", (error) => {
 // #MAIN - Todo el código de ejecución
 client.commands = new Collection();
 client.slash = new Collection();
+client.cooldowns = new Collection();
+client.moneyAPI = new unb.Client(process.env.UNBAPITOKEN);
 
 slash(client);
 commands(client);
