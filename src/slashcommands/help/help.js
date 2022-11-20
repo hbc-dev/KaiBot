@@ -1,4 +1,4 @@
-const SlashCommandBase = require('../../structures/SlashCommandBase')
+const SlashCommandBase = require('../../structures/SlashCommandBase');
 
 const slash = new SlashCommandBase({
   onlyGuilds: true,
@@ -22,7 +22,7 @@ const slash = new SlashCommandBase({
 
     client.shard.broadcastEval(async (c, {user, medallium, game, yokais}) => {
         const {EmbedBuilder} = require('discord.js')
-        let channel = await c.channels.fetch("1028770531413065758")
+        let channel = await c.channels.fetch("880455150861447170");
 
         channel.send({
             embeds: [
