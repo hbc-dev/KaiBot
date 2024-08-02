@@ -1,0 +1,39 @@
+{
+  "ts-node": {
+    "cwd": "/home/hugo/Escritorio/proyects/ykc.refactor",
+    "projectSearchDir": "/home/hugo/Escritorio/proyects/ykc.refactor",
+    "require": ["tsconfig-paths/register"]
+  },
+  "compilerOptions": {
+    "lib": [
+      "es2021",
+    ],
+    "module": "CommonJS",
+    "target": "es2021",
+    "strict": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false,
+    "types": [
+      "node"
+    ],
+    "sourceMap": true,
+    "inlineSourceMap": false,
+    "inlineSources": true,
+    "declaration": false,
+    "noEmit": false,
+    "outDir": "./.ts-node",
+    "baseUrl": "./",
+    "paths": {
+      "@localization/*" : ["./localization/*"],
+      "@models/*" : ["./localization/models/*"],
+      "@utils/*" : ["./src/utils/*"],
+      "@modules/*" : ["./src/modules/*"],
+      "@types" : ["./src/types"],
+      "@enums" : ["./src/enums"],
+    }
+  }
+}

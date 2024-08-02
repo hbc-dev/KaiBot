@@ -1,0 +1,337 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "MessageOptions" : {
+            "type" : "object",
+            "properties": {
+                "id" : {
+                    "type" : "string",
+                    "description": "The message id"
+                },
+                "value" : {
+                    "type" : "string",
+                    "description": "The raw message"
+                },
+                "locales" : {
+                    "type" : "object",
+                    "description": "The message locales",
+                    "additionalProperties": {
+                        "type" : "string"
+                    },
+                    "propertyNames": {
+                        "enum": ["es-ES", "en-US", "fr"]
+                    }
+                }
+            },
+            "required": ["id", "value"]
+        },
+        "Embed" : {
+            "type" : "object",
+            "required": ["id"],
+            "properties": {
+                "id" : {
+                    "type" : "string"
+                },
+                "author" : {
+                    "type" : "object",
+                    "required": ["name"],
+                    "properties": {
+                        "name" : {
+                            "type" : "string",
+                            "maxLength": 256
+                        },
+                        "locales" : {
+                            "additionalProperties": {
+                                "type" : "string",
+                                "maxLength": 256
+                            },
+                            "propertyNames": {
+                                "enum": ["es-ES", "en-US", "fr"]
+                            }
+                        }
+                    }
+                },
+                "description" : {
+                    "required": ["text"],
+                    "properties": {
+                        "text" : {
+                            "type" : "string",
+                            "maxLength": 4096,
+                            "description": "The description of the embed"
+                        },
+                        "locales" : {
+                            "additionalProperties": {
+                                "type" : "string",
+                                "maxLength": 4096,
+                                "description": "The located description of the embed"
+                            },
+                            "propertyNames": {
+                                "enum": ["es-ES", "en-US", "fr"]
+                            }
+                        }
+                    }
+                },
+                "fields" : {
+                    "$ref": "#/definitions/Fields"
+                },
+                "footer" : {
+                    "required": ["text"],
+                    "properties": {
+                        "text" : {
+                            "type" : "string",
+                            "description": "The footer of the embed",
+                            "maxLength": 2048
+                        },
+                        "locales" : {
+                            "additionalProperties": {
+                                "type" : "string",
+                                "description": "The located description of the embed",
+                                "maxLength": 2048
+                            },
+                            "propertyNames": {
+                                "enum": ["es-ES", "en-US", "fr"]
+                            }
+                        }
+                    },
+                    "type" : "object",
+                    "maxLength": 2048
+                },
+                "title" : {
+                    "required": ["text"],
+                    "properties": {
+                        "text" : {
+                            "type" : "string",
+                            "maxLength": 256
+                        },
+                        "locales" : {
+                            "additionalProperties": {
+                                "type" : "string",
+                                "maxLength": 256
+                            },
+                            "propertyNames": {
+                                "enum": ["es-ES", "en-US", "fr"]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Fields" : {
+            "type" : "array",
+            "maxItems": 25,
+            "items": {
+                "type" : "object",
+                "required": ["name", "value", "id"],
+                "properties": {
+                    "id" : {
+                        "type" : "string",
+                        "description": "The id of the field"
+                    },
+                    "name" : {
+                        "type" : "string",
+                        "description": "The title of this field",
+                        "maxLength": 256
+                    },
+                    "value" : {
+                        "type" : "string",
+                        "description": "The text of this field",
+                        "maxLength": 1024
+                    },
+                    "locales" : {
+                        "type" : "object",
+                        "description": "The located fields",
+                        "additionalProperties": {
+                            "type": "object",
+                            "required": ["name", "value"],
+                            "properties": {
+                                "name" : {
+                                    "type" : "string",
+                                    "description": "The located title of this field",
+                                    "maxLength": 256
+                                },
+                                "value" : {
+                                    "type" : "string",
+                                    "description": "The located text of this field",
+                                    "maxLength": 1024
+                                }
+                            }
+                        },
+                        "propertyNames": {
+                            "enum": ["es-ES", "en-US", "fr"]
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "additionalProperties": {
+        "required": ["name", "description"],
+        "properties": {
+            "name" : {
+                "type" : "string",
+                "description": "The name of the command"
+            },
+            "description" : {
+                "type" : "string",
+                "description": "The description of the command",
+                "maxLength": 100
+            },
+            "locales" : {
+                "type": "object",
+                "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                        "name" : {
+                            "type" : "string",
+                            "description": "The name of the command (locale)"
+                        },
+                        "description" : {
+                            "type" : "string",
+                            "description": "The description of the command (locale)",
+                            "maxLength": 100
+                        }
+                    }
+                },
+                "propertyNames": {
+                    "enum": ["es-ES", "en-US", "fr"]
+                }
+            },
+            "options" : {
+                "type" : "object",
+                "additionalProperties": {
+                    "type" : "object",
+                    "required": ["name", "description"],
+                    "properties": {
+                        "name" : {
+                            "type" : "string",
+                            "description": "The name of the option"
+                        },
+                        "description" : {
+                            "type" : "string",
+                            "description": "The description of the option",
+                            "maxLength": 100
+                        },
+                        "locales" : {
+                            "type" : "object",
+                            "additionalProperties": {
+                                "type" : "object",
+                                "properties": {
+                                    "name" : {
+                                        "type" : "string",
+                                        "description": "The name of the option (locale)"
+                                    },
+                                    "description" : {
+                                        "type" : "string",
+                                        "description": "The description of the option (locale)",
+                                        "maxLength": 100
+                                    }
+                                }
+                            },
+                            "propertyNames": {
+                                "enum": ["es-ES", "en-US", "fr"]
+                            }
+                        }
+                    }
+                }
+            },
+            "messages" : {
+                "type" : "object",
+                "properties": {
+                    "result" : {
+                        "$ref": "#/definitions/MessageOptions"
+                    }
+                },
+                "additionalProperties": {
+                    "$ref": "#/definitions/MessageOptions"
+                }
+            },
+            "embeds" : {
+                "properties": {
+                    "result" : {
+                        "$ref": "#/definitions/Embed"
+                    }
+                },
+                "additionalProperties": {
+                    "type" : "object",
+                    "$ref": "#/definitions/Embed"
+                }
+            },
+            "subcmds" : {
+                "type" : "object",
+                "additionalProperties": {
+                    "type" : "object",
+                    "required": ["name", "description"],
+                    "properties": {
+                        "name" : {
+                            "type" : "string",
+                            "description": "The name of the subcommand"
+                        },
+                        "description" : {
+                            "type" : "string",
+                            "description": "The description of the subcommand",
+                            "maxLength": 100
+                        },
+                        "options" : {
+                            "type" : "object",
+                            "additionalProperties": {
+                                "type" : "object",
+                                "required": ["name", "description"],
+                                "properties": {
+                                    "name" : {
+                                        "type" : "string",
+                                        "description": "The name of the option"
+                                    },
+                                    "description" : {
+                                        "type" : "string",
+                                        "description": "The description of the option",
+                                        "maxLength": 100
+                                    },
+                                    "locales" : {
+                                        "type" : "object",
+                                        "additionalProperties": {
+                                            "type" : "object",
+                                            "properties": {
+                                                "name" : {
+                                                    "type" : "string",
+                                                    "description": "The name of the option (locale)"
+                                                },
+                                                "description" : {
+                                                    "type" : "string",
+                                                    "description": "The description of the option (locale)",
+                                                    "maxLength": 100
+                                                }
+                                            }
+                                        },
+                                        "propertyNames": {
+                                            "enum": ["es-ES", "en-US", "fr"]
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "locales" : {
+                            "type" : "object",
+                            "additionalProperties": {
+                                "type" : "object",
+                                "properties": {
+                                    "name" : {
+                                        "type" : "string",
+                                        "description": "The name of the subcommand (locale)"
+                                    },
+                                    "description" : {
+                                        "type" : "string",
+                                        "description": "The description of the subcommand (locale)",
+                                        "maxLength": 100
+                                    }
+                                }
+                            },
+                            "propertyNames": {
+                                "enum": ["en-US", "es-ES", "fr"]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

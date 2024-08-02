@@ -1,0 +1,302 @@
+{
+    "$schema": "./locales.schema.json",
+    "ping" : {
+        "name": "ping",
+        "description": "Testing command, only responses!",
+        "locales": {
+            "es-ES": {
+                "name": "ping",
+                "description": "Comando de testeo, ¡solo respuestas!"
+            },
+            "fr": {
+                "name": "ping",
+                "description": "Commande de test, uniquement des réponses!"
+            }
+        },
+        "messages": {
+            "PING_SENDED": {
+                "id": "PING_SENDED",
+                "value": "Pong!",
+                "locales": {
+                    "es-ES": "Pong!",
+                    "fr": "Pong!"
+                }
+            }
+        }
+    },
+    "get_options" : {
+        "name": "get_options",
+        "description": "Testing command, only responses!",
+        "options": {
+            "thumbnail" : {
+                "name": "thumbnail",
+                "description": "Set the thumbnail of the embed!",
+                "locales": {
+                    "es-ES": {
+                        "name": "miniatura",
+                        "description": "¡Establece la miniatura del embed!"
+                    },
+                    "fr": {
+                        "name": "vignette",
+                        "description": "Définissez la vignette de l'embed!"
+                    }
+                }
+            },
+            "author" : {
+                "name": "author",
+                "description": "Set the user field of the embed!",
+                "locales": {
+                    "es-ES": {
+                        "name": "autor",
+                        "description": "¡Establece el campo de autor en el embed!"
+                    },
+                    "fr": {
+                        "name": "auteur",
+                        "description": "Définissez le champ utilisateur de l'embed!"
+                    }
+                }
+            },
+            "color" : {
+                "name": "color",
+                "description": "Set the color of the embed!",
+                "locales": {
+                    "es-ES": {
+                        "name": "color",
+                        "description": "¡Establece el color del embed!"
+                    },
+                    "fr": {
+                        "name": "couleur",
+                        "description": "Définissez la couleur de l'embed!"
+                    }
+                }
+            },
+            "description" : {
+                "name": "description",
+                "description": "Set the description of the embed!",
+                "locales": {
+                    "es-ES": {
+                        "name": "descripcion",
+                        "description": "¡Establece la descripción del embed!"
+                    },
+                    "fr": {
+                        "name": "description",
+                        "description": "Définissez la description de l'embed!"
+                    }
+                }
+            },
+            "title" : {
+                "name": "title",
+                "description": "Set the title of the embed!",
+                "locales": {
+                    "es-ES": {
+                        "name": "titulo",
+                        "description": "¡Establece el título del embed!"
+                    },
+                    "fr": {
+                        "name": "titre",
+                        "description": "Définissez le titre de l'embed!"
+                    }
+                }
+            },
+            "channel" : {
+                "name": "channel",
+                "description": "Set a channel to insert into the embed!",
+                "locales": {
+                    "es-ES": {
+                        "name": "canal",
+                        "description": "¡Establece el canal a insertar en el embed!"
+                    },
+                    "fr": {
+                        "name": "canal",
+                        "description": "Définissez un canal à insérer dans l'embed!"
+                    }
+                }
+            },
+            "user" : {
+                "name": "user",
+                "description": "Set an user to insert into the embed!",
+                "locales": {
+                    "es-ES": {
+                        "name": "usuario",
+                        "description": "¡Establece un usuario a insertar en el embed!"
+                    },
+                    "fr": {
+                        "name": "utilisateur",
+                        "description": "Définissez un utilisateur à insérer dans l'embed!"
+                    }
+                }
+            },
+            "role" : {
+                "name": "role",
+                "description": "Set a role to insert into the embed!",
+                "locales": {
+                    "es-ES": {
+                        "name": "rol",
+                        "description": "¡Establece un rol!"
+                    },
+                    "fr": {
+                        "name": "role",
+                        "description": "Définissez un rôle à insérer dans l'embed!"
+                    }
+                }
+            },
+            "mention" : {
+                "name": "mention",
+                "description": "Set a mention to insert into the embed!",
+                "locales": {
+                    "es-ES": {
+                        "name": "mencion",
+                        "description": "¡Establece una mención para insertarla en el embed!"
+                    },
+                    "fr": {
+                        "name": "mention",
+                        "description": "Définir une mention à insérer dans l'embed!"
+                    }
+                }
+            },
+            "footer" : {
+                "name": "footer",
+                "description": "Set a description to insert into the embed!",
+                "locales": {
+                    "es-ES": {
+                        "name": "pie_de_pagina",
+                        "description": "¡Establece el pie de página para el embed!"
+                    },
+                    "fr": {
+                        "name": "bas_de_page",
+                        "description": "Définissez un pied de page à insérer dans l'embed!"
+                    }
+                }
+            },
+            "image" : {
+                "name": "image",
+                "description": "Set an image to insert into the embed!",
+                "locales": {
+                    "es-ES": {
+                        "name": "imagen",
+                        "description": "¡Establece la imagen del embed!"
+                    },
+                    "fr": {
+                        "name": "image",
+                        "description": "Définissez une image à insérer dans l'embed!"
+                    }
+                }
+            }
+        },
+        "locales": {
+            "es-ES": {
+                "name": "obtener_opciones",
+                "description": "Comando de testeo, ¡solo respuestas!"
+            },
+            "fr": {
+                "name": "obtenir_options",
+                "description": "Commande de test, uniquement des réponses!"
+            }
+        },
+        "messages" : {
+            "GET_OPTIONS_SENDED": {
+                "id": "GET_OPTIONS_SENDED",
+                "value": "The options test is done! Result:",
+                "locales": {
+                    "es-ES": "¡El test de opciones está completo! Resultado:",
+                    "fr": "Le test des options est terminé! Résultat:"
+                }
+            }
+        },
+        "embeds": {
+            "GET_OPTIONS_EMBED": {
+                "id": "GET_OPTIONS_EMBED",
+                "description": {
+                    "text": "{description}",
+                    "locales": {
+                        "es-ES": "{description}",
+                        "fr": "{description}"
+                    }
+                },
+                "footer": {
+                    "text": "{footer}",
+                    "locales": {
+                        "es-ES": "{footer}",
+                        "fr": "{footer}"
+                    }
+                },
+                "title": {
+                    "text": "{title}",
+                    "locales" : {
+                        "es-ES": "{title}",
+                        "fr": "{title}"
+                    }
+                },
+                "author": {
+                    "name": "{author}",
+                    "locales": {
+                        "es-ES": "{author}",
+                        "fr": "{author}"
+                    }
+                },
+                "fields": [
+                    {
+                        "id": "CHANNEL",
+                        "name": "Channel test",
+                        "value": "{channel}",
+                        "locales": {
+                            "es-ES": {
+                                "name": "Testeo de canal",
+                                "value": "{channel}"
+                            },
+                            "fr": {
+                                "name" : "Test de canal",
+                                "value": "{channel}"
+                            }
+                        }
+                    },
+                    {
+                        "id": "ROLE",
+                        "name": "Role test",
+                        "value": "{role}",
+                        "locales": {
+                            "es-ES": {
+                                "name": "Testeo de rol",
+                                "value": "{role}"
+                            },
+                            "fr": {
+                                "name": "Test de rôle",
+                                "value": "{role}"
+                            }
+                        }
+                    },
+                    {
+                        "id": "USER",
+                        "name": "User test",
+                        "value": "{user}",
+                        "locales": {
+                            "es-ES": {
+                                "name": "Testeo de usuario",
+                                "value": "{user}"
+                            },
+                            "fr": {
+                                "name": "Test utilisateur",
+                                "value": "{user}"
+                            }
+                        }
+                    },
+                    {
+                        "id": "MENTION",
+                        "name": "Mentionable test",
+                        "value": "{mention}",
+                        "locales": {
+                            "es-ES": {
+                                "name": "Testeo de mencionable",
+                                "value": "{mention}"
+                            },
+                            "fr": {
+                                "name": "Test notable",
+                                "value": "{mention}"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
